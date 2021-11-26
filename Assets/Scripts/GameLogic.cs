@@ -60,9 +60,7 @@ public class GameLogic : MonoBehaviour
                 characterVelocityInPercent.y = -CharacterSpeed;
         }
 
-
         characterPositionInPercent += (characterVelocityInPercent * Time.deltaTime);
-
 
         Vector2 screenPos = new Vector2(characterPositionInPercent.x * (float)Screen.width, characterPositionInPercent.y * (float)Screen.height);
         Vector3 characterPos = Camera.main.ScreenToWorldPoint(new Vector3(screenPos.x, screenPos.y, 0));

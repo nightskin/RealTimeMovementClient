@@ -91,16 +91,3 @@ static public class ServerToClientSignifiers
 
 #endregion
 
-
-///Lesson Plan Outline---------
-
-//cover game design
-//cover architecture layout, evaluate reasons
-
-//challenge students to develop:
-//deterministic balloon spawning, same position on all clients
-//deterministic balloon popping, no two clients can pop the same balloon
-
-//challenge students to develop:
-//display on all clients a list of all player names (just ID) with the points that the player has
-
