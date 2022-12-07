@@ -6,6 +6,7 @@ using UnityEngine.Networking;
 
 public class NetworkedClient : MonoBehaviour
 {
+
     int connectionID;
     int maxConnections = 1000;
     int reliableChannelID;
@@ -68,7 +69,7 @@ public class NetworkedClient : MonoBehaviour
             unreliableChannelID = config.AddChannel(QosType.Unreliable);
             HostTopology topology = new HostTopology(config, maxConnections);
             hostID = NetworkTransport.AddHost(topology, 0);
-            connectionID = NetworkTransport.Connect(hostID, "192.168.2.41", socketPort, 0, out error); // server is local on network
+            connectionID = NetworkTransport.Connect(hostID, "10.228.72.43", socketPort, 0, out error); // server is local on network
 
             if (error == 0)
             {

@@ -10,19 +10,16 @@ static public class NetworkedClientProcessing
     {
         Debug.Log("msg received = " + msg + ".");
 
-        string[] csv = msg.Split(',');
-        int signifier = int.Parse(csv[0]);
+        string[] input = msg.Split(',');
+        if(input[0] == "Update")
+        {
+            gameLogic.character.transform.position = new Vector3(float.Parse(input[1]), float.Parse(input[2]));
+        }
 
-        // if (signifier == ServerToClientSignifiers.asd)
-        // {
+        
 
-        // }
-        // else if (signifier == ServerToClientSignifiers.asd)
-        // {
+        
 
-        // }
-
-        //gameLogic.DoSomething();
 
     }
 
