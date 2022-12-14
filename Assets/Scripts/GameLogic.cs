@@ -4,43 +4,43 @@ using UnityEngine;
 
 public class GameLogic : MonoBehaviour
 {
-    public GameObject character;
+    public List<GameObject> characters;
     [SerializeField] NetworkedClient client;
     const float CharacterSpeed = 10;
 
     void Start()
     {
         NetworkedClientProcessing.SetGameLogic(this);
-
-        Sprite circleTexture = Resources.Load<Sprite>("Circle");
-
-        character = new GameObject("Character");
-
-        character.AddComponent<SpriteRenderer>();
-        character.GetComponent<SpriteRenderer>().sprite = circleTexture;
     }
     void Update()
     {
         if(Input.GetKey(KeyCode.A))
         {
-            client.SendMessageToServer("A," + ParsePosition());
+            client.SendMessageToServer("A,");
         }
         else if (Input.GetKey(KeyCode.D))
         {
-            client.SendMessageToServer("D," + ParsePosition());
+            client.SendMessageToServer("D,");
         }
         if (Input.GetKey(KeyCode.W))
         {
-            client.SendMessageToServer("W," + ParsePosition());
+            client.SendMessageToServer("W,");
         }
         else if (Input.GetKey(KeyCode.S))
         {
-            client.SendMessageToServer("S," + ParsePosition());
+            client.SendMessageToServer("S,");
         }
     }
-    string ParsePosition()
+
+    public void CreateCharacter(string name)
     {
-        return character.transform.position.x.ToString() + "," + character.transform.position.y.ToString();
+
+        Sprite circleTexture = Resources.Load<Sprite>("Circle");
+
+        GameObject character = new GameObject(name);
+
+        character.AddComponent<SpriteRenderer>();
+        character.GetComponent<SpriteRenderer>().sprite = circleTexture;
     }
 }
 

@@ -13,12 +13,33 @@ static public class NetworkedClientProcessing
         string[] input = msg.Split(',');
         if(input[0] == "Update")
         {
-            gameLogic.character.transform.position = new Vector3(float.Parse(input[1]), float.Parse(input[2]));
+            for(int i = 0; i < input.Length; i++)
+            {
+                if(input[i] != string.Empty)
+                {
+                    if(GameObject.Find(input[i]) != null)
+                    {
+                        GameObject gameObject = GameObject.Find(input[i]);
+                        gameObject.transform.position = new Vector3(float.Parse(input[i + 1]), float.Parse(input[i + 2]), 0);
+                    }
+                }
+            }
         }
-
-        
-
-        
+        else if(input[0] == "Connect")
+        {
+            for(int i = 1; i < input.Length; i++)
+            {
+                if(!GameObject.Find(input[i]) && input[i] != string.Empty)
+                {
+                    gameLogic.CreateCharacter(input[i]);
+                }
+            }
+        }
+        else if(input[0] == "Disconnect")
+        {
+            //var p  = GameObject.Find(input[1]);
+            //GameObject.Destroy(p);
+        }
 
 
     }
@@ -33,11 +54,11 @@ static public class NetworkedClientProcessing
     #region Connection Related Functions and Events
     static public void ConnectionEvent()
     {
-        Debug.Log("Network Connection Event!");
+        SendMessageToServer("Connect");
     }
     static public void DisconnectionEvent()
     {
-        Debug.Log("Network Disconnection Event!");
+        SendMessageToServer("Disconnect");
     }
     static public bool IsConnectedToServer()
     {
