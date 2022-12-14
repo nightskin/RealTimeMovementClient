@@ -37,11 +37,9 @@ static public class NetworkedClientProcessing
         }
         else if(input[0] == "Disconnect")
         {
-            //var p  = GameObject.Find(input[1]);
-            //GameObject.Destroy(p);
+            var p  = GameObject.Find(input[1]);
+            GameObject.Destroy(p);
         }
-
-
     }
 
     static public void SendMessageToServer(string msg)
